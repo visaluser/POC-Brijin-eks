@@ -18,12 +18,13 @@ jobs:
       with:
         terraform_version: 0.15.0
 
-    - name: Configure AWS Credentials
-      run: |
-        aws configure set aws_access_key_id "AKIA4RGZNRYR3M3NAO6S"
-        aws configure set aws_secret_access_key "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"
-        aws configure set default.region us-west-2
-
+    - name: Set up AWS CLI
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-1
+          
     - name: Terraform Init
       run: terraform init
       
@@ -34,4 +35,4 @@ jobs:
       run: terraform plan 
 
     - name: Terraform Apply
-      run: terraform destroy --auto-approve
+      run: terraform apply --auto-approve
