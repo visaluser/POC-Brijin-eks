@@ -84,8 +84,6 @@ resource "aws_iam_role_policy_attachment" "cloudquicklabs-AmazonEKSClusterPolicy
   role       = aws_iam_role.cloudquicklabs.name
 }
 
-# Optionally, enable Security Groups for Pods
-# Reference: https://docs.aws.amazon.com/eks/latest/userguide/security-groups-for-pods.html
 resource "aws_iam_role_policy_attachment" "cloudquicklabs-AmazonEKSVPCResourceController" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSVPCResourceController"
   role       = aws_iam_role.cloudquicklabs.name
@@ -118,5 +116,10 @@ resource "aws_iam_role_policy_attachment" "cloudquicklabs-AmazonEKS_CNI_Policy" 
 
 resource "aws_iam_role_policy_attachment" "cloudquicklabs-AmazonEC2ContainerRegistryReadOnly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+  role       = aws_iam_role.cloudquicklabs2.name
+}
+
+resource "aws_iam_role_policy_attachment" "cloudquicklabs-AmazonDynamoDBFullAccess" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
   role       = aws_iam_role.cloudquicklabs2.name
 }
