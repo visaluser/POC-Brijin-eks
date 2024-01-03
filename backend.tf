@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-        bucket = "vis-back-1212"
+        bucket = "lal-bucket-0101"
         key     = "myproject022/terraform.tfstate"
         region = "us-east-2"
   }
